@@ -1,6 +1,8 @@
 package models
 
-import "os/user"
+import (
+	"errors"
+)
 
 // User model
 type User struct {
@@ -15,22 +17,28 @@ var (
 	nextID = 1
 )
 
+// GetUsers func() []*User
 func GetUsers() []*User {
 	return users
 }
 
-func GetUserById(id int) (User, error) {
-	for _, user range users {
+// GetUserByID func(id int) (*User, error)
+func GetUserByID(id int) (*User, error) {
+	for _, user := range users {
 		if user.ID == id {
 			return user, nil
 		}
 	}
-	return [], nil
+	return nil, errors.New("User not found")
 }
 
-func InsertNewUser(u User) (User, error) {
+// InsertNewUser func(u User) (*User, error)
+func InsertNewUser(u User) (*User, error) {
+	if u.ID != 0 {
+		return nil, errors.New("Unable to create new user")
+	}
 	u.ID = nextID
 	nextID++
 	users = append(users, &u)
-	return u, nil
+	return &u, nil
 }

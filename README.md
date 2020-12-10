@@ -5,7 +5,7 @@
 - Able to connect localhost with port 3000
 
 - Able to get all user information
-`GET: http://locahost:3000/user`
+`GET: http://locahost:3000/users`
 
 - Able to get user with id
 `GET: http://localhost:3000/user/{id}`

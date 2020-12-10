@@ -7,15 +7,15 @@ import (
 
 // userController object
 type userController struct {
-	userIdPattern *regexp.Regexp
+	userIDPattern *regexp.Regexp
 }
 
-func (uc userController) ServerHttp(w http.ResponseWriter, r *http.Request) {
+func (uc userController) ServerHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Connected!"))
 }
 
 func newUserController() *userController {
 	return &userController{
-		userIdPattern: regexp.MustCompile(`^/user/(\d+)/?`),
+		userIDPattern: regexp.MustCompile(`^/user/(\d+)/?`),
 	}
 }
