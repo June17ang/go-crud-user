@@ -53,3 +53,14 @@ func UpdateUserInfo(u User) (User, error) {
 	}
 	return User{}, errors.New("Failed to update user information")
 }
+
+// RemoveUser func(id int) (string, error)
+func RemoveUser(id int) (string, error) {
+	for key, user := range users {
+		if user.ID == id {
+			users = append(users[:key], users[key+1:]...)
+			return "Successful delete user from list", nil
+		}
+	}
+	return "", errors.New("Failed to delete user")
+}
