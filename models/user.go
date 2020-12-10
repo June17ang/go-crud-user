@@ -23,22 +23,22 @@ func GetUsers() []*User {
 }
 
 // GetUserByID func(id int) (*User, error)
-func GetUserByID(id int) (*User, error) {
+func GetUserByID(id int) (User, error) {
 	for _, user := range users {
 		if user.ID == id {
-			return user, nil
+			return *user, nil
 		}
 	}
-	return nil, errors.New("User not found")
+	return User{}, errors.New("User not found")
 }
 
 // InsertNewUser func(u User) (*User, error)
-func InsertNewUser(u User) (*User, error) {
+func InsertNewUser(u User) (User, error) {
 	if u.ID != 0 {
-		return nil, errors.New("Unable to create new user")
+		return User{}, errors.New("Unable to create new user")
 	}
 	u.ID = nextID
 	nextID++
 	users = append(users, &u)
-	return &u, nil
+	return u, nil
 }
