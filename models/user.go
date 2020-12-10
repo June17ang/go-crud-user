@@ -42,3 +42,14 @@ func InsertNewUser(u User) (User, error) {
 	users = append(users, &u)
 	return u, nil
 }
+
+// UpdateUserInfo func(u User) (User, error)
+func UpdateUserInfo(u User) (User, error) {
+	for key, user := range users {
+		if user.ID == u.ID {
+			users[key] = &u
+			return u, nil
+		}
+	}
+	return User{}, errors.New("Failed to update user information")
+}
